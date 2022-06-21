@@ -21,7 +21,7 @@ class Alunos extends React.Component{
     render() {
         return (
             <div>
-                <p>Cadastro de alunos</p>
+                <p>Cadastro usuário</p>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -42,8 +42,6 @@ class Alunos extends React.Component{
                             )
                         }
 
-                       
-                       
                     </tbody>
                 </Table>
             </div>

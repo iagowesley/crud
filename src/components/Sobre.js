@@ -1,7 +1,7 @@
 function Sobre() {
     return (
         <div>
-            <p>Sobre o Cadastro</p>
+            <p>Sobre</p>
         </div>
     )
 }

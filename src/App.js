@@ -19,7 +19,7 @@ function App() {
           Página Inicial
         </Nav.Link>
         <Nav.Link as={Link} to="/Alunos">
-          Cadastro dos Alunos
+          Cadastro do Usuário
         </Nav.Link>
         <Nav.Link as={Link} to="/Sobre">
           Sobre
