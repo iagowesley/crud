@@ -3,7 +3,7 @@ import Alunos from './components/Alunos';
 import Home from './components/Home';
 import Sobre from './components/Sobre';
 import React from "react";
-import { BrowserRouter, Link, Route, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import {Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
