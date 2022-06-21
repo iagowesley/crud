@@ -6,12 +6,16 @@ class Alunos extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            alunos : [
-                {'id':1, 'nome':'Iago Wesley', 'email': 'iagowesley234@gmail.com'},
-                {'id':2, 'nome':'João Paulo', 'email': 'joaozindatr234@gmail.com'},
-                {'id':3, 'nome':'José Marcos', 'email': 'jozesindadoze@gmail.com'}
-            ]
+            alunos : []
         }
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:3000/alunos")
+        .then(resposta => resposta.json())
+        .then(dados => {
+            this.setState({alunos : dados})
+        })
     }
 
     render() {
@@ -27,21 +31,19 @@ class Alunos extends React.Component{
                         </tr>
                     </thead>
                     <tbody>
-                       <tr>
-                        <td> {this.state.alunos[0].nome} </td>
-                        <td>iagowesley234@gmail.com</td>
-                        <td>Alterar &nbsp; &nbsp;Excluir</td>
-                        </tr>
-                        <tr>
-                        <td>João</td>
-                        <td>joaozindatr234@gmail.com</td>
-                        <td>Alterar &nbsp;&nbsp;  Excluir</td>
-                        </tr>
-                        <tr>
-                        <td>José</td>
-                        <td>jozesindadoze@gmail.com</td>
-                        <td>Alterar &nbsp;&nbsp; Excluir</td>
-                        </tr>
+
+                        {
+                            this.state.alunos.map((aluno) =>
+                            <tr>
+                                <td> {aluno.nome} </td>
+                                <td> {aluno.email}</td>
+                                <td>Alterar &nbsp; &nbsp;Excluir</td>
+                            </tr>
+                            )
+                        }
+
+                       
+                       
                     </tbody>
                 </Table>
             </div>
