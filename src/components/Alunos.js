@@ -6,6 +6,7 @@ class Alunos extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+
             nome: '',
             email: '',
             alunos : []
@@ -17,7 +18,7 @@ class Alunos extends React.Component{
     }
 
     buscarAluno() {
-        fetch("http://localhost:3000/alunos")
+        fetch("http://localhost:3000/Alunos")
         .then(resposta => resposta.json())
         .then(dados => {
             this.setState({alunos : dados})
@@ -25,7 +26,7 @@ class Alunos extends React.Component{
     }
 
     deletarAluno = (id) => {
-        fetch("http://localhost:3000/alunos/"+id, { method: 'DELETE'})
+        fetch("http://localhost:3000/Alunos/"+id, { method: 'DELETE'})
         .then(resposta => {
             if(resposta.ok){
                 this.buscarAluno();
@@ -33,8 +34,8 @@ class Alunos extends React.Component{
         })
     }
 
-    adicionarAluno = (aluno) => {
-        fetch("http://localhost:3000/alunos", 
+    cadastraAluno = (aluno) => {
+        fetch("http://localhost:3000/Alunos", 
         { 
             method: 'POST',
             headers: {'Content-Type':'application/json'},
@@ -70,7 +71,7 @@ class Alunos extends React.Component{
 
                         {
                             this.state.alunos.map((aluno) =>
-                            <tr>
+                            <tr key={aluno.id}>
                                 <td> {aluno.nome} </td>
                                 <td> {aluno.email}</td>
                                 <td>Alterar &nbsp; &nbsp;<Button variant="danger" onClick={ () => this.deletarAluno(aluno.id) }>DELETAR</Button></td>
@@ -106,7 +107,7 @@ class Alunos extends React.Component{
             nome: this.state.nome,
             email: this.state.email
         }
-        this.adicionarAluno(aluno);
+        this.cadastraAluno(aluno);
     }
 
 
@@ -114,16 +115,16 @@ class Alunos extends React.Component{
         return (
             <div>
                 <Form>
-                    <Form.Group className="mb-3" controlId="name">
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Nome</Form.Label>
-                        <Form.Control type="text" placeholder="Seu nome" value={ this.state.nome } onChange={ this.atualizaNome }/>
+                        <Form.Control type="text" placeholder="Seu nome" value={this.state.nome} onChange={this.atualizaNome}/>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="email">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Seu email" value={ this.state.email } onChange= { this.atualizaEmail } />
+                        <Form.Control type="email" placeholder="Seu email" value={this.state.email} onChange={this.atualizaEmail} />
                     </Form.Group>
-                    <Button variant="primary" type="submit" onClick={ this.submit }>
-                        CADASTRAR
+                    <Button variant="primary" type="submit" onClick={this.submit}>
+                        Salvar
                     </Button>
                 </Form>
                 {this.renderTabela()}
